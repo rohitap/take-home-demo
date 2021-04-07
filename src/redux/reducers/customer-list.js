@@ -10,7 +10,9 @@ const {
   actions: {
     fetchCustomerListStart,
     fetchCustomerListSuccess,
-    fetchCustomerListFailure
+    fetchCustomerListFailure,
+    fetchCustomerListAddSuccess,
+    updateCustomerList
   },
   reducer,
 } = createSlice({
@@ -22,15 +24,25 @@ const {
       isLoading: true,
     }),
     fetchCustomerListSuccess: (state, action) => ({
-        ...initialState,
-        customerList: action && action.payload && action.payload.customerData,
-        isLoading: false,
+      ...initialState,
+      customerList: action && action.payload && action.payload.customerData,
+      isLoading: false,
     }),
     fetchCustomerListFailure: () => ({
       ...initialState,
       error: true,
       isLoading: false,
-    })
+    }),
+    fetchCustomerListAddSuccess: (state, action) => ({
+      ...initialState,
+      customerList: [...state.customerList, action.payload.newCustomerData]
+    }),
+    updateCustomerList: (state, action) => {
+      return {
+        ...initialState,
+        customerList: action.payload.customerList
+      }
+    }
   },
 })
 
@@ -38,5 +50,7 @@ export default reducer
 export {
   fetchCustomerListStart,
   fetchCustomerListSuccess,
-  fetchCustomerListFailure
+  fetchCustomerListFailure,
+  fetchCustomerListAddSuccess,
+  updateCustomerList
 }

@@ -87,3 +87,22 @@
   height: 36px;
   width: 98%;
 }
+
+.update-customer-container {
+  text-align: left;
+}
+
+.update-customer-container .input {
+  width: 80%;
+  height: 33px;
+  margin-bottom: 11px;
+}
+
+.tip {
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
+  color: #2185d0;
+  font-weight: bold;
+  font-size: 20px;
+}

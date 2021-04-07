@@ -4,6 +4,7 @@ import { fetchCustomerListStart } from '../redux/reducers/customer-list';
 import Customer from './customer';
 import AddCustomer from './add-customer';
 import NewCustomerInput from './new-customer-input';
+import UpdateCustomer from './update-customer';
 
 const CustomerList = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,24 @@ const CustomerList = () => {
   }, []);
 
   const [displayNewInput, changeNewInput] = useState(false);
+  const [updateCustomerData, changeUpdateCustomer] = useState({});
   const { customerList, isLoading } = useSelector((state) => state.customerList);
+
+  const onNewCustomer = useCallback(() => {
+    changeNewInput((state) => !state);
+  });
+
+  const updateCustomerName = useCallback(({ id, customerName }) => {
+    changeUpdateCustomer((data) => ({
+      ...data,
+      id, 
+      customerName
+    }));
+  });
+
+  const closeUpdation = useCallback(() => {
+    changeUpdateCustomer({});
+  });
 
   const ShowCustomerList = () => {
     return (
@@ -21,6 +39,8 @@ const CustomerList = () => {
           return (
             <Customer 
               key={customer.pk} 
+              updateCustomerName={updateCustomerName}
+              id={customer.pk}
               sequence={index + 1}
               customerName={customer.fields.csgrp_name}
               customerGroup={customer.fields.customer_group}
@@ -29,10 +49,6 @@ const CustomerList = () => {
         })
     )
   }
-
-  const onNewCustomer = useCallback(() => {
-    changeNewInput(true);
-  })
 
   return (
     <div className="customer-list">
@@ -51,6 +67,16 @@ const CustomerList = () => {
         <AddCustomer 
           onNewCustomer={onNewCustomer} 
           displayNewInput={displayNewInput}/>
+      }
+      <div className={'tip'}>
+        Tip: Use Tab and 'Shift + Tab' to select option without a mouse.
+      </div>
+      {
+        updateCustomerData.id 
+        && <UpdateCustomer 
+          id={updateCustomerData.id} 
+          closeUpdation={closeUpdation}
+          customerName={updateCustomerData.customerName}/>
       }
     </div>  
   )

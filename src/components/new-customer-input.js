@@ -16,20 +16,22 @@ const NewCustomerInput = () => {
     <tr>
       <td></td>
       <td>
-        <input 
-          className="input-field" 
-          value={customer.customerName}
-          onChange={handleChange}
-          name="customerName" 
-          type="text"/>
+      <input 
+        value={customer.customerGroup}
+        onChange={handleChange}
+        autocomplete="off"
+        className="input-field" 
+        name="customerGroup" 
+        type="text"/>
       </td>
       <td>
-        <input 
-          value={customer.customerGroup}
-          onChange={handleChange}
-          className="input-field" 
-          name="customerGroup" 
-          type="text"/>
+      <input 
+        className="input-field" 
+        value={customer.customerName}
+        onChange={handleChange}
+        autocomplete="off"
+        name="customerName" 
+        type="text"/>
       </td>
     </tr>
   )

@@ -1,34 +1,38 @@
 import { useDispatch } from 'react-redux';
 import { addCustomer } from '../redux/actions/customer';
 import { resetAddCustomerState } from '../redux/reducers/add-customer';
+import styles from './styles'
 
 const AddCustomer = ({ onNewCustomer, displayNewInput }) => {
   const dispatch = useDispatch();
   const saveCustomer = () => {
-    dispatch(addCustomer())
+    dispatch(addCustomer());
   };
 
   const cancel = () => {
-    dispatch(resetAddCustomerState())
+    dispatch(resetAddCustomerState());
+    onNewCustomer();
   };
 
   return (
     <div className="add-button-container">
       {
-        !displayNewInput && 
+        !displayNewInput &&
         <button className="button" onClick={onNewCustomer}>Add New</button>
-      }  
+      }
       {
-        displayNewInput 
-        && 
+        displayNewInput
+        &&
         <>
-          <button 
+          <button
             onClick={saveCustomer}
-            style={{width: '47%', float: 'left', backgroundColor: 'green' }} 
+            className={'left'}
+            style={styles.save}
             className="button">Save</button>
-          <button 
+          <button
             onClick={cancel}
-            style={{width: '48%', float: 'left', backgroundColor: 'red' }} 
+            className={'left'}
+            style={styles.cancel}
             className="button">Cancel</button>
         </>
       }

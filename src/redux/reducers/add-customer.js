@@ -20,9 +20,9 @@ const {
   initialState,
   reducers: {
     addCustomer: (state, action ) => ({
-        ...initialState,
-        isLoading: true,
-        customer: action.payload   
+      ...initialState,
+      isLoading: true,
+      customer: action.payload   
     }),
     resetAddCustomerState: (state, action) => ({
       ...initialState
