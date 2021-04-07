@@ -7,6 +7,7 @@ const AddCustomer = ({ onNewCustomer, displayNewInput }) => {
   const dispatch = useDispatch();
   const saveCustomer = () => {
     dispatch(addCustomer());
+    onNewCustomer();
   };
 
   const cancel = () => {
