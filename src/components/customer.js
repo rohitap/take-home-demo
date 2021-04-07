@@ -5,7 +5,7 @@ const Customer = ({ sequence, customerGroup, id, updateCustomerName, customerNam
     <tr>
       <td>{sequence}</td>
       <td>{customerGroup}</td>
-      <td onClick={() => updateCustomerName({ id, customerName })}>{customerName}</td>
+      <td onClick={() => updateCustomerName({ id, customerName, sequence })}>{customerName}</td>
     </tr>
   )
 }

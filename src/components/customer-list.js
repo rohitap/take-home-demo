@@ -20,11 +20,12 @@ const CustomerList = () => {
     changeNewInput((state) => !state);
   });
 
-  const updateCustomerName = useCallback(({ id, customerName }) => {
+  const updateCustomerName = useCallback(({ id, customerName, sequence }) => {
     changeUpdateCustomer((data) => ({
       ...data,
       id, 
-      customerName
+      customerName,
+      sequence
     }));
   });
 
@@ -74,6 +75,7 @@ const CustomerList = () => {
       {
         updateCustomerData.id 
         && <UpdateCustomer 
+          sequence={updateCustomerData.sequence}
           id={updateCustomerData.id} 
           closeUpdation={closeUpdation}
           customerName={updateCustomerData.customerName}/>

@@ -56,15 +56,14 @@ function* CustomerListWorker(action) {
         break;
       }
       case UPDATE_CUSTOMER: {
-        const {id, newCustomerName} = action.payload;
+        const {id, newCustomerName, sequence} = action.payload;
         if (!(newCustomerName && newCustomerName.trim())) {
           alert('Customer name should not be empty!');
           return;
         }
         let {customerList} = yield select((state) => state.customerList);
         const clonedCustomerList = JSON.parse(JSON.stringify(customerList));
-        const index = clonedCustomerList.findIndex((customer) => customer.pk === id);
-        clonedCustomerList[index].fields.csgrp_name = newCustomerName;
+        clonedCustomerList[sequence - 1].fields.csgrp_name = newCustomerName;
         yield put(updateCustomerList({ customerList: clonedCustomerList }));
         // Use custom delay
         yield delay(600);

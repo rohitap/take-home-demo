@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateCustomer, deleteCustomer } from '../redux/actions/customer';
 import styles from './styles';
 
-const UpdateCustomer = ({ id, customerName, closeUpdation }) => {
+const UpdateCustomer = ({ id, customerName, sequence, closeUpdation }) => {
   const [newCustomerName, changeCustomerName] = useState(customerName);
   const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ const UpdateCustomer = ({ id, customerName, closeUpdation }) => {
   }, [customerName]);
 
   const updateCustomerDetail = () => {
-    dispatch(updateCustomer({ id, newCustomerName, closeUpdation }));
+    dispatch(updateCustomer({ id, newCustomerName, sequence, closeUpdation }));
     closeUpdation();
   }
 
